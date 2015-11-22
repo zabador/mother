@@ -5,6 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.zabador.motherspills.alarm.model.Alarm;
+import com.zabador.motherspills.sms.SmsManager;
+import com.zabador.motherspills.sms.SmsManagerFactory;
+
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Application's alarm broadcast receiver.
@@ -27,7 +32,19 @@ public class AlarmReceiver extends BroadcastReceiver {
             Alarm alarm = alarmManager.getAlarm(alarmId);
 
             if(alarm != null) {
-                //TODO: do something with the alarm
+                //send the message
+                SmsManager smsManager = SmsManagerFactory.getSmsManager();
+                smsManager.sendSms(context, alarm.getRecipient(), alarm.getContent());
+
+                //increment one day
+                Date alarmDate = alarm.getDate();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(alarmDate);
+                calendar.add(Calendar.DATE, 1);
+
+                //save and schedule the alarm
+                alarm.setDate(new Date(calendar.getTimeInMillis()));
+                alarmManager.saveAlarm(context, alarm);
             }
         }
     }
