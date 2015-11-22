@@ -1,5 +1,7 @@
 package com.zabador.motherspills.alarm.model;
 
+import com.orm.SugarRecord;
+
 import java.util.Date;
 
 /**
@@ -8,7 +10,7 @@ import java.util.Date;
  *
  * @author Adrian Pena
  */
-public class Alarm {
+public class Alarm extends SugarRecord<Alarm> {
     private String name;
     private String content;
     private Object recipient;
