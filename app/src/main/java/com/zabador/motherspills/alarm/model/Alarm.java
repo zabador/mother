@@ -13,16 +13,16 @@ import java.util.Date;
 public class Alarm extends SugarRecord<Alarm> {
     private String name;
     private String content;
-    private Object recipient;
+    private String recipientNumber;
     private Date date;
 
     public Alarm() {
     }
 
-    public Alarm(String name, String content, Object recipient, Date date) {
+    public Alarm(String name, String content, String recipient, Date date) {
         this.name = name;
         this.content = content;
-        this.recipient = recipient;
+        this.recipientNumber = recipient;
         this.date = date;
     }
 
@@ -43,11 +43,11 @@ public class Alarm extends SugarRecord<Alarm> {
     }
 
     public Object getRecipient() {
-        return recipient;
+        return recipientNumber;
     }
 
-    public void setRecipient(Object recipient) {
-        this.recipient = recipient;
+    public void setRecipient(String recipient) {
+        this.recipientNumber = recipient;
     }
 
     public Date getDate() {
