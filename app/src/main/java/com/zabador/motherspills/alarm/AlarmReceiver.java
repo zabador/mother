@@ -16,7 +16,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * The pending intents received in this broadcast receiver are expected to provide the alarm's id.
      */
-    public static final String INTENT_EXTRA_ALARM_ID = "alarm_id";
+    public static final String INTENT_EXTRA_ALARM_ID = "com.zabador.motherspills.alarm.AlarmReceiver.ALARM_ID";
 
     @Override
     public void onReceive(Context context, Intent intent) {
