@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TimePicker;
