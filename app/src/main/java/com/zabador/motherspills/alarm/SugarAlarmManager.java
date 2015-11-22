@@ -18,27 +18,31 @@ class SugarAlarmManager implements AlarmManager{
 
     @Override
     public long saveAlarm(Context context, Alarm alarm) {
-        return 0;
+        alarm.save();
+        return alarm.getId();
     }
 
     @Override
     public Alarm getAlarm(long id) {
-        return null;
+        return Alarm.findById(Alarm.class, id);
     }
 
     @Override
     public List<Alarm> getAlarms() {
-        return null;
+        return Alarm.listAll(Alarm.class);
     }
 
     @Override
     public void removeAlarm(long id) {
-
+        Alarm alarm = getAlarm(id);
+        if(alarm != null) {
+            alarm.delete();
+        }
     }
 
     @Override
     public void removeAlarm(Alarm alarm) {
-
+        removeAlarm(alarm.getId());
     }
 
     public static SugarAlarmManager getInstance() {
