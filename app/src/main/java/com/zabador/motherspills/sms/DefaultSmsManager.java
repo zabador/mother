@@ -11,7 +11,7 @@ import android.content.Intent;
  * @author Adrian Pena
  */
 class DefaultSmsManager implements SmsManager {
-    public static DefaultSmsManager sInstance;
+    private static DefaultSmsManager sInstance;
 
     private DefaultSmsManager() {
         //NOP
