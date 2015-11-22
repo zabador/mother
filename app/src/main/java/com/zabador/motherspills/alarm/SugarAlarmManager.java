@@ -1,6 +1,8 @@
 package com.zabador.motherspills.alarm;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 
 import com.zabador.motherspills.alarm.model.Alarm;
 
@@ -19,6 +21,7 @@ class SugarAlarmManager implements AlarmManager{
     @Override
     public long saveAlarm(Context context, Alarm alarm) {
         alarm.save();
+        setAlarm(context, alarm);
         return alarm.getId();
     }
 
@@ -50,5 +53,16 @@ class SugarAlarmManager implements AlarmManager{
             sInstance = new SugarAlarmManager();
         }
         return sInstance;
+    }
+
+    private void setAlarm(Context context, Alarm alarm) {
+        //create the pending alarm intent
+        final Intent messageAlarmReceiver = new Intent(context, AlarmReceiver.class);
+        messageAlarmReceiver.putExtra(AlarmReceiver.INTENT_EXTRA_ALARM_ID, alarm.getId());
+        final PendingIntent alarmIntent = PendingIntent.getBroadcast(context, alarm.getId().intValue(), messageAlarmReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        //schedule the alarm
+        android.app.AlarmManager alarmManager = (android.app.AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(android.app.AlarmManager.RTC_WAKEUP, alarm.getDate().getTime(), alarmIntent);
     }
 }
