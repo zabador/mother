@@ -42,7 +42,7 @@ public class Alarm extends SugarRecord<Alarm> {
         this.content = content;
     }
 
-    public Object getRecipient() {
+    public String getRecipient() {
         return recipientNumber;
     }
 
