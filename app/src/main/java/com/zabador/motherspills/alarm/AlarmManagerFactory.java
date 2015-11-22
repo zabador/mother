@@ -8,11 +8,14 @@ package com.zabador.motherspills.alarm;
  */
 public class AlarmManagerFactory {
 
+    private AlarmManagerFactory() {
+        //NOP
+    }
     /**
      * Retrieves an implementation for the Alarm Manager.
      * @return an {@link AlarmManager}.
      */
-    public AlarmManager getAlarmManager() {
+    public static AlarmManager getAlarmManager() {
         return SugarAlarmManager.getInstance();
     }
 }
