@@ -81,11 +81,13 @@ public class AddNewAlarmActivity extends Activity {
 
     @OnClick(R.id.save_button)
     public void onSaveAlarm() {
-        if (!mAlarmName.getText().toString().isEmpty() && !mTextMessage.getText().toString().isEmpty() && mNumber.isEmpty()) {
+        if (!mAlarmName.getText().toString().isEmpty() && !mTextMessage.getText().toString().isEmpty() && !mNumber.isEmpty()) {
             Alarm alarm = new Alarm(mAlarmName.getText().toString(), mTextMessage.getText().toString(), mNumber, mDate);
             AlarmManagerFactory.getAlarmManager().saveAlarm(this, alarm);
+            finish();
+        } else {
+            Toast.makeText(AddNewAlarmActivity.this, "Something is empty", Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(AddNewAlarmActivity.this, "Something is empty", Toast.LENGTH_SHORT).show();
 
     }
 
