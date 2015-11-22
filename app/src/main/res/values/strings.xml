@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">MothersPills</string>
     <string name="action_settings">Settings</string>
-    <string name="enter_contact_name">Enter contact name</string>
+    <string name="search_contact">Search Contact</string>
+    <string name="alarm_name">Alarm Name:</string>
+    <string name="set_time">Set Time</string>
+    <string name="recipient_number">Recipient number</string>
+    <string name="text_message">Text Message</string>
+    <string name="title_activity_search_test">Search Test</string>
 </resources>
