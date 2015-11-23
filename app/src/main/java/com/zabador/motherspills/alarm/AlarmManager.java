@@ -37,13 +37,15 @@ public interface AlarmManager {
 
     /**
      * Removes the alarm tied to the given id.
+     * @param context the Android context.
      * @param id the id of the alarm to remove.
      */
-    void removeAlarm(long id);
+    void removeAlarm(Context context, long id);
 
     /**
      * Removes the given alarm if the alarm id is valid in the repository.
+     * @param context the Android context.
      * @param alarm the alarm to remove.
      */
-    void removeAlarm(Alarm alarm);
+    void removeAlarm(Context context, Alarm alarm);
 }

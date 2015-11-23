@@ -36,16 +36,24 @@ class SugarAlarmManager implements AlarmManager{
     }
 
     @Override
-    public void removeAlarm(long id) {
+    public void removeAlarm(Context context, long id) {
         Alarm alarm = getAlarm(id);
-        if(alarm != null) {
-            alarm.delete();
-        }
+        removeAlarm(context, alarm);
     }
 
     @Override
-    public void removeAlarm(Alarm alarm) {
-        removeAlarm(alarm.getId());
+    public void removeAlarm(Context context, Alarm alarm) {
+        if(alarm != null && alarm.getId() != null) {
+            //remove from OS Alarm Manager
+            Intent intent = new Intent(context, AlarmReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, alarm.getId().intValue(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            android.app.AlarmManager alarmManager = (android.app.AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.cancel(pendingIntent);
+
+            //remove from data base.
+            alarm.delete();
+        }
     }
 
     public static SugarAlarmManager getInstance() {
