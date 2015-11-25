@@ -15,6 +15,7 @@ import com.zabador.motherspills.R;
 import com.zabador.motherspills.alarm.AlarmManagerFactory;
 import com.zabador.motherspills.alarm.model.Alarm;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +52,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         List<String> alarmNames = new ArrayList<>();
         List<Alarm> alarms = AlarmManagerFactory.getAlarmManager().getAlarms();
+        String pattern = "MM-dd-yyyy h:mm a";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
         for(Alarm alarm : alarms) {
-            alarmNames.add(alarm.getName());
+            String date = simpleDateFormat.format(alarm.getDate());
+            alarmNames.add(alarm.getName() + " " + date);
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, alarmNames);
